@@ -57,7 +57,7 @@ public class CourseServiceImpl implements CourseService {
     //not tested
     public double calcCourseScore(long courseId){
         ResultMessage resultMessage = noteRepository.findNotesByCourseId(courseId);
-        List<Note> noteList = (List<Note>)resultMessage.getObject();
+        List<Note> noteList = (List<Note>)resultMessage.getData();
         long totalThumbs = 0;
         double totalWeights = 0.0;
         for(Note note : noteList){
@@ -70,7 +70,7 @@ public class CourseServiceImpl implements CourseService {
 
     public boolean checkRepeat(String courseName){
         ResultMessage resultMessage = courseRepository.findCourseByName(courseName);
-        List<Course> courseList = (List<Course>) resultMessage.getObject();
+        List<Course> courseList = (List<Course>) resultMessage.getData();
         boolean result = false;
         for(Course course : courseList){
             if(courseName.equals(course.getCourseName())){

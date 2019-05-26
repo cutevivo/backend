@@ -38,7 +38,7 @@ public class UserController {
     @ResponseBody
     public ResultMessage login(String username, String password){
         ResultMessage resultMessage = userService.getUserByUsername(username);
-        List<User> userList = (List<User>) resultMessage.getObject();
+        List<User> userList = (List<User>) resultMessage.getData();
         if(userList.size() == 0){
             return new ResultMessage(false, "用户名已存在！");
         }
@@ -63,7 +63,7 @@ public class UserController {
         user.setRoles("user");
         userService.addUser(user);
         ResultMessage resultMessage = userService.getUserByUsername(username);
-        List<User> userList = (List<User>) resultMessage.getObject();
+        List<User> userList = (List<User>) resultMessage.getData();
         User temp = userList.get(0);
         return new ResultMessage(true, String.valueOf(temp.getId()), "注册成功！");
 
@@ -73,7 +73,7 @@ public class UserController {
     @ResponseBody
     public ResultMessage getInfo(long userId){
         ResultMessage resultMessage = userService.getUserById(userId);
-        User user = (User)resultMessage.getObject();
+        User user = (User)resultMessage.getData();
         return new ResultMessage(true, user, "获取用户信息成功！");
 
     }

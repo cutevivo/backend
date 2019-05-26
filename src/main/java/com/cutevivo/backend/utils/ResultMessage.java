@@ -2,8 +2,32 @@ package com.cutevivo.backend.utils;
 
 public class ResultMessage {
     private boolean result;
-    private Object object;
+    private Object data;
     private String reason;
+
+    public boolean getResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public ResultMessage() {
 
@@ -14,33 +38,11 @@ public class ResultMessage {
         this.reason = reason;
     }
 
-    public ResultMessage(boolean result, Object object, String reason) {
+    public ResultMessage(boolean result, Object data, String reason) {
         this.result = result;
-        this.object = object;
+        this.data = data;
         this.reason = reason;
     }
 
-    public boolean getResult() {
-        return result;
-    }
 
-    public void setResult(boolean result) {
-        this.result = result;
-    }
-
-    public Object getObject() {
-        return object;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
 }

@@ -108,7 +108,7 @@ public class BackendApplicationTests {
     public void test8(){
         String keyword = "Web";
         ResultMessage resultMessage = courseService.getCourseByKeyword(keyword);
-        List<Course> courseList = (List<Course>)resultMessage.getObject();
+        List<Course> courseList = (List<Course>)resultMessage.getData();
         assertEquals(true, resultMessage.getResult());
     }
 

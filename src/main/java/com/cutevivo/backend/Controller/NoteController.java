@@ -17,7 +17,7 @@ public class NoteController {
     @RequestMapping("note")
     public ResultMessage fetchNote(long noteId){
         ResultMessage resultMessage = noteService.getNoteById(noteId);
-        Note note = (Note)resultMessage.getObject();
+        Note note = (Note)resultMessage.getData();
         return new ResultMessage(true, note, "获取笔记信息成功！");
     }
 

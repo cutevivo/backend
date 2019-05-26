@@ -77,12 +77,12 @@ public class NoteRepository {
 
     public List<Long> findUserCurrentCollectedNotes(long userId, long courseId, int chapterOrder){
         ResultMessage resultMessage1 = collectionEntryRepository.findCollectionEntriesByUserId(userId);
-        List<CollectionEntry> collectionEntryList = (List<CollectionEntry>) resultMessage1.getObject();
+        List<CollectionEntry> collectionEntryList = (List<CollectionEntry>) resultMessage1.getData();
         List<Long> result = new ArrayList<>();
         if(collectionEntryList.size()>0){
             for(CollectionEntry collectionEntry : collectionEntryList){
                 ResultMessage temp = findNoteById(collectionEntry.getNoteId());
-                Note note = (Note)temp.getObject();
+                Note note = (Note)temp.getData();
                 if(note.getCourseId() == courseId && note.getChapterOrder() == chapterOrder){
                     result.add(note.getNoteId());
                 }
@@ -93,7 +93,7 @@ public class NoteRepository {
 
     public List<Long> findUserCollectedNotes(long userId){
         ResultMessage resultMessage1 = collectionEntryRepository.findCollectionEntriesByUserId(userId);
-        List<CollectionEntry> collectionEntryList = (List<CollectionEntry>) resultMessage1.getObject();
+        List<CollectionEntry> collectionEntryList = (List<CollectionEntry>) resultMessage1.getData();
         List<Long> result = new ArrayList<>();
         if(collectionEntryList.size()>0) {
             for (CollectionEntry collectionEntry : collectionEntryList) {

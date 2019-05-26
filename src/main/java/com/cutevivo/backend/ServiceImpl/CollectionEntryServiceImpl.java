@@ -34,7 +34,7 @@ public class CollectionEntryServiceImpl implements CollectionEntryService {
 
     public boolean checkRepeat(long userId, long noteId){
         ResultMessage resultMessage = collectionEntryRepository.findCollectionEntriesByUserId(userId);
-        List<CollectionEntry> collectionEntryList = (List<CollectionEntry>)resultMessage.getObject();
+        List<CollectionEntry> collectionEntryList = (List<CollectionEntry>)resultMessage.getData();
         if(collectionEntryList.size() == 0){
             return false;
         }else{

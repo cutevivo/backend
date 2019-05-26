@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         if(noteIds.size()>0){
             for(long l : noteIds){
                 ResultMessage temp = noteRepository.findNoteById(l);
-                Note note = (Note) temp.getObject();
+                Note note = (Note) temp.getData();
                 result.add(note);
             }
         }
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     public boolean checkRepeat(String username){
         ResultMessage resultMessage = userRepository.findUserByUsername(username);
-        List<User> userList = (List<User>)resultMessage.getObject();
+        List<User> userList = (List<User>)resultMessage.getData();
         boolean result = false;
         for(User user : userList){
             if(username.equals(user.getUsername())){
