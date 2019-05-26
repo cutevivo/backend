@@ -103,5 +103,9 @@ public class NoteRepository {
         return result;
     }
 
+    public ResultMessage findNotesByCourseId(long courseId){
+        return baseRepository.findByProperty(Note.class, "courseId", courseId);
+    }
+
 
 }

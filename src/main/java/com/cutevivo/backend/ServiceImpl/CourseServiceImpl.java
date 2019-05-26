@@ -46,9 +46,8 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.deleteCourse(course);
     }
 
-    //not tested
-    public ResultMessage getCourseNotes(long courseId){
-        return noteRepository.findNotesByCourseId(courseId);
+    public ResultMessage getNotesByCourseAndChapter(long courseId, int chapterOrder){
+        return noteRepository.findNoteByCourseAndChapter(courseId, chapterOrder);
     }
 
     public ResultMessage getChaptersByCourseId(long courseId){
@@ -57,7 +56,7 @@ public class CourseServiceImpl implements CourseService {
 
     //not tested
     public double calcCourseScore(long courseId){
-        ResultMessage resultMessage = getCourseNotes(courseId);
+        ResultMessage resultMessage = noteRepository.findNotesByCourseId(courseId);
         List<Note> noteList = (List<Note>)resultMessage.getObject();
         long totalThumbs = 0;
         double totalWeights = 0.0;

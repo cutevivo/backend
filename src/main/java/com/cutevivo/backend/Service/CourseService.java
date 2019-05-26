@@ -10,7 +10,7 @@ public interface CourseService {
     ResultMessage addCourse(Course course);
     ResultMessage getCourseByKeyword(String keyword);
     ResultMessage deleteCourse(Course course);
-    ResultMessage getCourseNotes(long courseId);
+    ResultMessage getNotesByCourseAndChapter(long courseId, int chapterOrder);
     ResultMessage getChaptersByCourseId(long courseId);
     double calcCourseScore(long courseId);
     boolean checkRepeat(String courseName);
