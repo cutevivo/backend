@@ -12,6 +12,7 @@ import com.cutevivo.backend.Service.UserService;
 import com.cutevivo.backend.utils.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +41,7 @@ public class UserController {
         ResultMessage resultMessage = userService.getUserByUsername(username);
         List<User> userList = (List<User>) resultMessage.getData();
         if(userList.size() == 0){
-            return new ResultMessage(false, "用户名已存在！");
+            return new ResultMessage(false, "用户名不存在！");
         }
         User temp = userList.get(0);
         if(password.equals(temp.getPassword())){
@@ -69,9 +70,9 @@ public class UserController {
 
     }
 
-    @RequestMapping("info")
+    @GetMapping("info")
     @ResponseBody
-    public ResultMessage getInfo(long userId){
+    public ResultMessage getInfo(@RequestParam(value="token") long userId){
         ResultMessage resultMessage = userService.getUserById(userId);
         User user = (User)resultMessage.getData();
         return new ResultMessage(true, user, "获取用户信息成功！");
