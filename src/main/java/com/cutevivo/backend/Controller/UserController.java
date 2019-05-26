@@ -9,6 +9,7 @@ import com.cutevivo.backend.Service.CollectionEntryService;
 import com.cutevivo.backend.Service.CourseService;
 import com.cutevivo.backend.Service.NoteService;
 import com.cutevivo.backend.Service.UserService;
+import com.cutevivo.backend.utils.InfoWrapper;
 import com.cutevivo.backend.utils.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -74,7 +76,14 @@ public class UserController {
     public ResultMessage getInfo(long userId){
         ResultMessage resultMessage = userService.getUserById(userId);
         User user = (User)resultMessage.getData();
-        return new ResultMessage(true, user, "获取用户信息成功！");
+        InfoWrapper infoWrapper = new InfoWrapper();
+        infoWrapper.setId(user.getId());
+        infoWrapper.setUsername(user.getUsername());
+        infoWrapper.setPassword(user.getPassword());
+        List<String> roles = new ArrayList<>();
+        roles.add("user");
+        infoWrapper.setRoles(roles);
+        return new ResultMessage(true, infoWrapper, "获取用户信息成功！");
 
     }
 
