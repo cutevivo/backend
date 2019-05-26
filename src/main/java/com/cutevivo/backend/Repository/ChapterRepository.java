@@ -16,4 +16,5 @@ public class ChapterRepository {
     public ResultMessage findChaptersByCourseId(long courseId){
         return baseRepository.findByProperty(Chapter.class, "courseId", courseId);
     }
+
 }

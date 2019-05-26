@@ -1,24 +1,25 @@
-package com.cutevivo.backend.Entity;
+package com.cutevivo.backend.utils;
 
-import javax.persistence.*;
+import com.cutevivo.backend.Entity.Course;
 
-/**
- * courseName：课程名
- * description：课程描述
- * score：课程总评分，当用户提交新的评分或笔记收到新的赞时更新
- */
-@Entity
-@Table(name="t_course")
-public class Course {
+public class CourseWrapper {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long courseId;
     private String courseName;
     private String description;
     private double score;
     private String teacher;
     private String posterUrl;
+    private int chapterNum;
+
+    public CourseWrapper(Course course){
+        this.courseId = course.getCourseId();
+        this.courseName = course.getCourseName();
+        this.description = course.getDescription();
+        this.score = course.getScore();
+        this.teacher = course.getTeacher();
+        this.posterUrl = course.getPosterUrl();
+    }
 
     public long getCourseId() {
         return courseId;
@@ -66,5 +67,13 @@ public class Course {
 
     public void setPosterUrl(String posterUrl) {
         this.posterUrl = posterUrl;
+    }
+
+    public int getChapterNum() {
+        return chapterNum;
+    }
+
+    public void setChapterNum(int chapterNum) {
+        this.chapterNum = chapterNum;
     }
 }
