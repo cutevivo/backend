@@ -109,13 +109,13 @@ public class BackendApplicationTests {
         String keyword = "Web";
         ResultMessage resultMessage = courseService.getCourseByKeyword(keyword);
         List<Course> courseList = (List<Course>)resultMessage.getObject();
-        assertEquals(true, resultMessage);
+        assertEquals(true, resultMessage.getResult());
     }
 
     @Test(timeout = 4000)
     public void test9(){
         String courseName = "Web速成";
-        assertEquals(false, courseService.checkRepeat(courseName));
+        assertEquals(true, courseService.checkRepeat(courseName));
     }
 
     @Test(timeout = 4000)
