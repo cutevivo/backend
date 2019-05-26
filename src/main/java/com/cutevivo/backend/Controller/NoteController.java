@@ -44,5 +44,10 @@ public class NoteController {
         return courseService.updateCourse(course);
     }
 
+    @RequestMapping("list")
+    public ResultMessage getNotesByCourseAndChapter(long courseId, int chapterId){
+        return courseService.getNotesByCourseAndChapter(courseId, chapterId);
+    }
+
 
 }
