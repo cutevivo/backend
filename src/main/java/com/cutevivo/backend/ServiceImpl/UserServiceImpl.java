@@ -1,7 +1,9 @@
 package com.cutevivo.backend.ServiceImpl;
 
+import com.cutevivo.backend.Entity.CollectionEntry;
 import com.cutevivo.backend.Entity.Note;
 import com.cutevivo.backend.Entity.User;
+import com.cutevivo.backend.Repository.CollectionEntryRepository;
 import com.cutevivo.backend.Repository.NoteRepository;
 import com.cutevivo.backend.Repository.UserRepository;
 import com.cutevivo.backend.Service.UserService;
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private NoteRepository noteRepository;
+
+    @Autowired
+    private CollectionEntryRepository collectionEntryRepository;
 
     public ResultMessage getUserById(long id){
         return userRepository.findUserById(id);
@@ -62,6 +67,17 @@ public class UserServiceImpl implements UserService {
 
     public ResultMessage getUserByUsername(String username){
         return userRepository.findUserByUsername(username);
+    }
+
+    public ResultMessage addCollectionEntry(long userId, long noteId){
+        CollectionEntry collectionEntry = new CollectionEntry();
+        collectionEntry.setUserId(userId);
+        collectionEntry.setNoteId(noteId);
+        ResultMessage resultMessage = noteRepository.findNoteById(noteId);
+        Note note = (Note)resultMessage.getData();
+        note.setThumbs(note.getThumbs() + 1);
+        noteRepository.updateNote(note);
+        return collectionEntryRepository.saveCollectionEntry(collectionEntry);
     }
 
 }

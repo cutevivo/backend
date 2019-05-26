@@ -107,5 +107,9 @@ public class NoteRepository {
         return baseRepository.findByProperty(Note.class, "courseId", courseId);
     }
 
+    public ResultMessage updateNote(Note note){
+        return baseRepository.update(note);
+    }
+
 
 }

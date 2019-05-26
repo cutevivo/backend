@@ -24,6 +24,10 @@ public class CourseRepository {
         return baseRepository.delete(course);
     }
 
+    public ResultMessage updateCourse(Course course){
+        return baseRepository.update(course);
+    }
+
     public ResultMessage findCourseById(long id){
         return baseRepository.findById(Course.class, id);
     }

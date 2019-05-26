@@ -33,6 +33,10 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.saveCourse(course);
     }
 
+    public ResultMessage updateCourse(Course course){
+        return courseRepository.updateCourse(course);
+    }
+
     public ResultMessage getAllCourses(){
         return courseRepository.findAllCourses();
     }

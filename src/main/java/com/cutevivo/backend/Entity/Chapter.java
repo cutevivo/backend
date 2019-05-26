@@ -17,6 +17,7 @@ public class Chapter {
     private long chapterId;
     private long courseId;
     private int chapterOrder;
+    private String chapterName;
 
     public long getChapterId() {
         return chapterId;
@@ -40,5 +41,13 @@ public class Chapter {
 
     public void setChapterOrder(int chapterOrder) {
         this.chapterOrder = chapterOrder;
+    }
+
+    public String getChapterName() {
+        return chapterName;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
     }
 }

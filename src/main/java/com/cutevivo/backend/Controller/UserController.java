@@ -28,15 +28,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private CourseService courseService;
-
-    @Autowired
-    private NoteService noteService;
-
-    @Autowired
-    private CollectionEntryService collectionEntryService;
-
     @RequestMapping(value = "login")
     @ResponseBody
     public ResultMessage login(String username, String password){
@@ -83,6 +74,7 @@ public class UserController {
         infoWrapper.setPassword(user.getPassword());
         List<String> roles = new ArrayList<>();
         roles.add("user");
+        roles.add("");
         infoWrapper.setRoles(roles);
         return new ResultMessage(true, infoWrapper, "获取用户信息成功！");
 

@@ -8,6 +8,7 @@ public interface CourseService {
     ResultMessage getCourseById(long courseId);
     ResultMessage getAllCourses();
     ResultMessage addCourse(Course course);
+    ResultMessage updateCourse(Course course);
     ResultMessage getCourseByKeyword(String keyword);
     ResultMessage deleteCourse(Course course);
     ResultMessage getNotesByCourseAndChapter(long courseId, int chapterOrder);

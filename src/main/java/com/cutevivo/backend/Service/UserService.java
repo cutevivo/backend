@@ -15,4 +15,5 @@ public interface UserService {
     ResultMessage addUser(User user);
     boolean checkRepeat(String username);
     ResultMessage getUserByUsername(String username);
+    ResultMessage addCollectionEntry(long userId, long noteId);
 }
