@@ -59,6 +59,7 @@ public class UserController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setRoles("user");
         userService.addUser(user);
         ResultMessage resultMessage = userService.getUserByUsername(username);
         List<User> userList = (List<User>) resultMessage.getObject();

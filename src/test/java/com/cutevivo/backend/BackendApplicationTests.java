@@ -48,7 +48,7 @@ public class BackendApplicationTests {
         User user = new User();
         user.setUsername("83747hf");
         user.setPassword("9hafkh");
-        assertEquals(true, userService.checkRepeat("83747hf"));
+        assertEquals(false, userService.checkRepeat("83747hf"));
 
     }
 
@@ -109,13 +109,13 @@ public class BackendApplicationTests {
         String keyword = "Web";
         ResultMessage resultMessage = courseService.getCourseByKeyword(keyword);
         List<Course> courseList = (List<Course>)resultMessage.getObject();
-        assertEquals("Web速成", courseList.get(0).getCourseName());
+        assertEquals(true, resultMessage);
     }
 
     @Test(timeout = 4000)
     public void test9(){
         String courseName = "Web速成";
-        assertEquals(true, courseService.checkRepeat(courseName));
+        assertEquals(false, courseService.checkRepeat(courseName));
     }
 
     @Test(timeout = 4000)
