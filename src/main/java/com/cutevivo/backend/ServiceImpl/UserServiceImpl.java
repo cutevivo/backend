@@ -1,5 +1,6 @@
 package com.cutevivo.backend.ServiceImpl;
 
+import com.cutevivo.backend.Entity.Note;
 import com.cutevivo.backend.Entity.User;
 import com.cutevivo.backend.Repository.NoteRepository;
 import com.cutevivo.backend.Repository.UserRepository;
@@ -8,6 +9,7 @@ import com.cutevivo.backend.utils.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,8 +30,17 @@ public class UserServiceImpl implements UserService {
         return noteRepository.findNotesByUserId(id);
     }
 
-    public List<Long> getUserCollectedNotes(long id){
-        return noteRepository.findUserCollectedNotes(id);
+    public ResultMessage getUserCollectedNotes(long id){
+        List<Long> noteIds = noteRepository.findUserCollectedNotes(id);
+        List<Note> result = new ArrayList<>();
+        if(noteIds.size()>0){
+            for(long l : noteIds){
+                ResultMessage temp = noteRepository.findNoteById(l);
+                Note note = (Note) temp.getObject();
+                result.add(note);
+            }
+        }
+        return new ResultMessage(true, result, "获取用户收藏笔记成功！");
     }
 
     public ResultMessage addUser(User user){

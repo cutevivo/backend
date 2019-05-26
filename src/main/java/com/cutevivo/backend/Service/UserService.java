@@ -11,7 +11,7 @@ public interface UserService {
     //该方法返回所有用户发布的笔记
     ResultMessage getUserNotes(long id);
     //该方法返回所有用户收藏的笔记
-    List<Long> getUserCollectedNotes(long id);
+    ResultMessage getUserCollectedNotes(long id);
     ResultMessage addUser(User user);
     boolean checkRepeat(String username);
     ResultMessage getUserByUsername(String username);

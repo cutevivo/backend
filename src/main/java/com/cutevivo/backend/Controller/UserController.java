@@ -13,6 +13,7 @@ import com.cutevivo.backend.utils.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -33,28 +34,28 @@ public class UserController {
     @Autowired
     private CollectionEntryService collectionEntryService;
 
-    @RequestMapping("login")
+    @RequestMapping(value = "login")
     @ResponseBody
-    public String login(String username, String password){
+    public ResultMessage login(String username, String password){
         ResultMessage resultMessage = userService.getUserByUsername(username);
         List<User> userList = (List<User>) resultMessage.getObject();
         if(userList.size() == 0){
-            return "该用户不存在！";
+            return new ResultMessage(false, "用户名已存在！");
         }
         User temp = userList.get(0);
         if(password.equals(temp.getPassword())){
-            return String.valueOf(temp.getId());
+            return new ResultMessage(true, String.valueOf(temp.getId()), "登录成功");
         }
-        return "密码错误！";
+        return new ResultMessage(false, "密码错误！");
 
 
     }
 
     @RequestMapping("register")
     @ResponseBody
-    public String register(String username, String password){
+    public ResultMessage register(String username, String password){
         if(userService.checkRepeat(username)){
-            return "用户名已存在！";
+            return new ResultMessage(false,"用户名已存在！");
         }
         User user = new User();
         user.setUsername(username);
@@ -64,17 +65,29 @@ public class UserController {
         ResultMessage resultMessage = userService.getUserByUsername(username);
         List<User> userList = (List<User>) resultMessage.getObject();
         User temp = userList.get(0);
-        return String.valueOf(temp.getId());
+        return new ResultMessage(true, String.valueOf(temp.getId()), "注册成功！");
 
     }
 
-    @RequestMapping(value="info")
+    @RequestMapping("info")
     @ResponseBody
     public ResultMessage getInfo(long userId){
         ResultMessage resultMessage = userService.getUserById(userId);
         User user = (User)resultMessage.getObject();
         return new ResultMessage(true, user, "获取用户信息成功！");
 
+    }
+
+    @RequestMapping("written_notes")
+    @ResponseBody
+    public ResultMessage getWrittenNotes(long userId){
+        return userService.getUserNotes(userId);
+    }
+
+    @RequestMapping("collected_notes")
+    @ResponseBody
+    public ResultMessage getCollectedNotes(long userId){
+        return userService.getUserCollectedNotes(userId);
     }
 
 
