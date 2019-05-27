@@ -114,7 +114,8 @@ public class BusinessServiceTests {
     @Test(timeout = 4000)
     public void test9(){
         String courseName = "数据结构";
-        assertEquals(true, courseService.checkRepeat(courseName));
+        boolean resultMessage = courseService.checkRepeat(courseName);
+        System.out.println(resultMessage);
     }
 
     @Test(timeout = 4000)
