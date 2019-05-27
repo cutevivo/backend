@@ -15,6 +15,6 @@ public interface NoteService {
     ResultMessage getNotesByCourseAndChapter(long courseId, int chapterOrder);
     //该方法返回当前用户在某个课程的某个章节下点赞过的笔记
     List<Long> getUserCurrentCollectedNotes(long userId, long courseId, int chapterOrder);
-
+    long getMaxNoteId();
 
 }

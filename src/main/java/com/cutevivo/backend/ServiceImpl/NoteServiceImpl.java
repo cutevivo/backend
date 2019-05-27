@@ -41,5 +41,11 @@ public class NoteServiceImpl implements NoteService {
         return noteRepository.findUserCurrentCollectedNotes(userId, courseId, chapterOrder);
     }
 
+    public long getMaxNoteId(){
+        ResultMessage resultMessage = noteRepository.getMaxNoteId();
+        Note note = (Note) resultMessage.getData();
+        return note.getNoteId();
+    }
+
 
 }

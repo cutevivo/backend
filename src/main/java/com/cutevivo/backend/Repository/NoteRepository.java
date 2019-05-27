@@ -113,5 +113,24 @@ public class NoteRepository {
         return baseRepository.update(note);
     }
 
+    public ResultMessage getMaxNoteId(){
+        Session session = baseRepository.getSession();
+        List<Note> result = null;
+        try {
+            String queryString =
+                    "from Note as model order by model.noteId desc";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setMaxResults(1);
+            result = queryObject.list();
+            Note note = result.get(0);
+            return new ResultMessage(true, note, "获取最后一条笔记成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResultMessage(false, "获取最后一条笔记失败！");
+        }finally {
+            session.close();
+        }
+    }
+
 
 }
