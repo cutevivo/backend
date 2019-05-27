@@ -61,12 +61,21 @@ public class NoteController {
 
     @RequestMapping("add")
     @ResponseBody
-    public ResultMessage addNote(){
+    public ResultMessage addNote(String header, String content,
+                                 String comment, int score,
+                                 long courseId, int chapterId,
+                                 long userId){
         Note note = new Note();
         /*
          * 使用前端的数据装配note
          */
-        long courseId = note.getCourseId();
+        note.setHeader(header);
+        note.setContent(content);
+        note.setComment(comment);
+        note.setScore(score);
+        note.setCourseId(courseId);
+        note.setChapterOrder(chapterId);
+        note.setUserId(userId);
         double newScore = courseService.calcCourseScore(courseId);
         ResultMessage resultMessage2 = courseService.getCourseById(courseId);
         Course course = (Course) resultMessage2.getData();
