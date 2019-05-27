@@ -81,7 +81,9 @@ public class NoteController {
         Course course = (Course) resultMessage2.getData();
         course.setScore(newScore);
         courseService.updateCourse(course);
-        return noteService.addNote(note);
+        noteService.addNote(note);
+        long maxNow = noteService.getMaxNoteId();
+        return new ResultMessage(true, maxNow, "笔记添加成功！");
     }
 
 

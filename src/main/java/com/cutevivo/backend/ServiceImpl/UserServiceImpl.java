@@ -41,8 +41,10 @@ public class UserServiceImpl implements UserService {
         if(noteIds.size()>0){
             for(long l : noteIds){
                 ResultMessage temp = noteRepository.findNoteById(l);
-                Note note = (Note) temp.getData();
-                result.add(note);
+                if(temp.getData()!=null) {
+                    Note note = (Note) temp.getData();
+                    result.add(note);
+                }
             }
         }
         return new ResultMessage(true, result, "获取用户收藏笔记成功！");
