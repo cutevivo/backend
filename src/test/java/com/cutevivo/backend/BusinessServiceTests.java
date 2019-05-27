@@ -113,7 +113,7 @@ public class BusinessServiceTests {
 
     @Test(timeout = 4000)
     public void test9(){
-        String courseName = "Web速成";
+        String courseName = "数据结构";
         assertEquals(false, courseService.checkRepeat(courseName));
     }
 
