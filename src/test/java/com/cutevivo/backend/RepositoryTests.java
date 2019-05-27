@@ -1,7 +1,9 @@
 package com.cutevivo.backend;
 
 
+import com.cutevivo.backend.Entity.User;
 import com.cutevivo.backend.Repository.*;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,4 +29,13 @@ public class RepositoryTests {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Test
+    public void test1(){
+        User user = new User();
+        user.setUsername("normal");
+        user.setPassword("normal");
+        user.setRoles("user");
+        baseRepository.save(user);
+    }
 }
