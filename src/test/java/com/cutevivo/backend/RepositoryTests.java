@@ -3,6 +3,7 @@ package com.cutevivo.backend;
 
 import com.cutevivo.backend.Entity.User;
 import com.cutevivo.backend.Repository.*;
+import com.cutevivo.backend.utils.ResultMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,13 @@ public class RepositoryTests {
         user.setPassword("normal");
         user.setRoles("user");
         baseRepository.save(user);
+    }
+
+    @Test
+    public void test2(){
+        ResultMessage resultMessage = baseRepository.findById(User.class, 1);
+        User user = (User)resultMessage.getData();
+        user.setUsername("VeryNewName");
+        baseRepository.update(user);
     }
 }
