@@ -68,7 +68,10 @@ public class CourseServiceImpl implements CourseService {
             totalThumbs += note.getThumbs();
             totalWeights += note.getThumbs() * note.getScore();
         }
-        double averageScore = totalWeights / totalThumbs;
+        double averageScore = 0.0;
+        if(totalThumbs != 0) {
+            averageScore = totalWeights / totalThumbs;
+        }
         return Double.parseDouble(String.format("%.1f", averageScore));
     }
 

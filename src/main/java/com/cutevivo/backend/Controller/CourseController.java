@@ -9,6 +9,7 @@ import com.cutevivo.backend.utils.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class CourseController {
     private CourseService courseService;
 
     @RequestMapping("info")
+    @ResponseBody
     public ResultMessage getCourseInfo(long courseId){
         ResultMessage resultMessage1 = courseService.getChaptersByCourseId(courseId);
         ResultMessage resultMessage2 = courseService.getCourseById(courseId);
@@ -31,6 +33,7 @@ public class CourseController {
     }
 
     @RequestMapping("all")
+    @ResponseBody
     public ResultMessage getAllCourse(){
         return courseService.getAllCourses();
     }
