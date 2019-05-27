@@ -12,6 +12,10 @@ public class CourseWrapper {
     private String posterUrl;
     private int chapterNum;
 
+    public CourseWrapper(){
+
+    }
+
     public CourseWrapper(Course course){
         this.courseId = course.getCourseId();
         this.courseName = course.getCourseName();

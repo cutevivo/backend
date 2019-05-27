@@ -8,6 +8,9 @@ import javax.persistence.*;
  * score：对课程评分
  * thumbs：笔记被点赞数
  * comment：短评
+ * userId
+ * courseId
+ * chapterOrder
  */
 @Entity
 @Table(name="t_note")
