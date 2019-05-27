@@ -74,10 +74,15 @@ public class UserServiceImpl implements UserService {
         collectionEntry.setUserId(userId);
         collectionEntry.setNoteId(noteId);
         ResultMessage resultMessage = noteRepository.findNoteById(noteId);
-        Note note = (Note)resultMessage.getData();
-        note.setThumbs(note.getThumbs() + 1);
-        noteRepository.updateNote(note);
-        return collectionEntryRepository.saveCollectionEntry(collectionEntry);
+        if(resultMessage.getData() != null) {
+            Note note = (Note) resultMessage.getData();
+            note.setThumbs(note.getThumbs() + 1);
+            noteRepository.updateNote(note);
+            return collectionEntryRepository.saveCollectionEntry(collectionEntry);
+        }else{
+            return new ResultMessage(false, "笔记不存在！");
+        }
     }
+
 
 }

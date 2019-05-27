@@ -82,9 +82,11 @@ public class NoteRepository {
         if(collectionEntryList.size()>0){
             for(CollectionEntry collectionEntry : collectionEntryList){
                 ResultMessage temp = findNoteById(collectionEntry.getNoteId());
-                Note note = (Note)temp.getData();
-                if(note.getCourseId() == courseId && note.getChapterOrder() == chapterOrder){
-                    result.add(note.getNoteId());
+                if(temp.getData() != null) {
+                    Note note = (Note) temp.getData();
+                    if (note.getCourseId() == courseId && note.getChapterOrder() == chapterOrder) {
+                        result.add(note.getNoteId());
+                    }
                 }
             }
         }

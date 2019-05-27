@@ -39,14 +39,18 @@ public class NoteController {
         //新增收藏条目的过程中，笔记的thumbs+1
         userService.addCollectionEntry(userId, noteId);
         ResultMessage resultMessage1 = noteService.getNoteById(noteId);
-        Note note = (Note) resultMessage1.getData();
-        long courseId = note.getCourseId();
-        //重新计算课程的总评分
-        double newScore = courseService.calcCourseScore(courseId);
-        ResultMessage resultMessage2 = courseService.getCourseById(courseId);
-        Course course = (Course) resultMessage2.getData();
-        course.setScore(newScore);
-        return courseService.updateCourse(course);
+        if(resultMessage1.getData()!=null) {
+            Note note = (Note) resultMessage1.getData();
+            long courseId = note.getCourseId();
+            //重新计算课程的总评分
+            double newScore = courseService.calcCourseScore(courseId);
+            ResultMessage resultMessage2 = courseService.getCourseById(courseId);
+            Course course = (Course) resultMessage2.getData();
+            course.setScore(newScore);
+            return courseService.updateCourse(course);
+        }else{
+            return new ResultMessage(false, "笔记不存在！");
+        }
     }
 
     @RequestMapping("list")

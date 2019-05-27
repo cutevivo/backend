@@ -1,10 +1,7 @@
 package com.cutevivo.backend;
 
 
-import com.cutevivo.backend.Entity.Chapter;
-import com.cutevivo.backend.Entity.CollectionEntry;
-import com.cutevivo.backend.Entity.Course;
-import com.cutevivo.backend.Entity.User;
+import com.cutevivo.backend.Entity.*;
 import com.cutevivo.backend.Repository.*;
 import com.cutevivo.backend.utils.ResultMessage;
 import org.junit.Assert;
@@ -115,5 +112,46 @@ public class RepositoryTests {
         System.out.println(collectionEntryList.size());
     }
 
+    @Test
+    public void test10(){
+        String keyword = "testword";
+        ResultMessage resultMessage = courseRepository.findCourseByKeyword(keyword);
+        List<Course> courseList = (List<Course>)resultMessage.getData();
+        System.out.println(courseList.size());
+    }
+
+    @Test
+    public void test11(){
+        String keyword = "testword";
+        ResultMessage resultMessage = noteRepository.findNoteByKeyword(keyword);
+        List<Note> courseList = (List<Note>)resultMessage.getData();
+        System.out.println(courseList.size());
+    }
+
+    @Test
+    public void test12(){
+        long courseId = 8;
+        int chapterOrder = 1;
+        ResultMessage resultMessage = noteRepository.findNoteByCourseAndChapter(courseId, chapterOrder);
+        List<Note> noteList = (List<Note>) resultMessage.getData();
+        System.out.println(noteList.size());
+    }
+
+    @Test
+    public void test13(){
+        long userId = 1;
+        long courseId = 8;
+        int chapterOrder = 1;
+        List<Long> longList = noteRepository.findUserCurrentCollectedNotes(userId, courseId, chapterOrder);
+        System.out.println(longList.size());
+
+    }
+
+    @Test
+    public void test14(){
+        long userId = 1;
+        List<Long> longList = noteRepository.findUserCollectedNotes(userId);
+        System.out.println(longList.size());
+    }
 
 }
